@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Happy Birthday Maari</title>
+<!-- Handwritten font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#fbe4ed, #fddde6);
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    color: #a9446e;
+  }
+  h1 {
+    margin-top: 60px;
+    font-size: 2.5em;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+    position: relative;
+    z-index: 2;
+  }
+  p {
+    max-width: 500px;
+    margin: 20px auto;
+    font-size: 1.3em;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeIn 2s forwards 2s;
+    position: relative;
+    z-index: 2;
+  }
+  .date {
+    margin-top: 30px;
+    font-size: 0.9em;
+    opacity: 0.7;
+  }
+  .floaty {
+    position: absolute;
+    font-size: 1.4em;
+    opacity: 0.3;
+    animation: fall 12s linear infinite;
+    z-index: 0;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 0; }
+    20% { opacity: 0.3; }
+    80% { opacity: 0.3; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    pointer-events:none;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.08);
+    z-index: 1;
+  }
+  .envelope {
+    margin-top: 40px;
+    font-size: 2.5em;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 2s forwards 3s;
+    transition: transform 0.3s;
+    z-index: 2;
+    position: relative;
+  }
+  .envelope:hover {
+    transform: scale(1.1);
+  }
+  #hiddenMessage {
+    display: none;
+    max-width: 500px;
+    margin: 30px auto;
+    font-size: 1.2em;
+    line-height: 1.5;
+    background: #fff0f6;
+    border: 2px dashed #f6a5c0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 2;
+    position: relative;
+  }
+  .fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+</style>
+</head>
+<body>
+<h1>Happy Birthday Maari 🦋</h1>
+<p>
+  I know it's been a while, and life hasn't always been easy. But today is all about you. You are brave, gentle, and full of magic. May this year be the start of something beautiful.<br><br>
+  Thank you for being patient with me, even when I needed time. You're always in my thoughts, and I wish you a year filled with butterflies 🦋, soft clouds ☁️, and quiet moments of happiness. 💗<br><br>
+  With all my love,<br>
+  Joan
+</p>
+<div class="date">July 2025 – A day to remember</div>
+<div class="envelope" id="envelope">💌</div>
+<div id="hiddenMessage">
+  Sometimes words are hard to say out loud, but I hope you always remember you matter more to me than you will ever know. Thank you for being you.
+</div>
+<script>
+  // Floating emojis
+  const emojis = ["🦋", "✨", "⭐", "🌸"];
+  for (let i = 0; i < 30; i++) {
+    const el = document.createElement("div");
+    el.className = "floaty";
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.top = Math.random() * 100 + "vh";
+    el.style.animationDuration = (8 + Math.random() * 6) + "s";
+    el.style.animationDelay = (Math.random() * 5) + "s";
+    document.body.appendChild(el);
+  }
+  // Envelope click
+  document.getElementById("envelope").addEventListener("click", () => {
+    document.getElementById("hiddenMessage").style.display = "block";
+  });
+  // Fade-out on close
+  window.addEventListener("beforeunload", () => {
+    document.body.classList.add("fade-out");
+  });
+</script>
+</body>
+</html>
